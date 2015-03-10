@@ -1,0 +1,10 @@
+<!-- index.xml -->
+<alloy>
+	<TabGroup id="tabGroup" onOpen="doOpen">
+		<!-- Tabs included via <require> tag -->
+		<require id="feedController" src="feed"/>
+		<require id="friendsController" src="friends"/>
+		<require id="settingsController" src="settings"/>
+	</TabGroup>
+</alloy>
+
