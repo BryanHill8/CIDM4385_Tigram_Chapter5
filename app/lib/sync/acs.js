@@ -53,6 +53,22 @@ function processACSPhotos(model, method, options) {
 			});
 			break;
 			case "read":
+		Cloud.Reviews.query((opts.data || {}), function(e) {
+			if (e.success) {
+				model.meta = e.meta;
+				if (e.reviews.length === 1) {
+					opts.success && opts.success(e.reviews[0]);
+				} else {
+					opts.success && opts.success(e.reviews);
+				}
+				model.trigger("fetch");
+				return;
+			} else {
+				Ti.API.error("Reviews.query " + e.message);
+				opts.error && opts.error(e.message || e);
+			}
+		});
+		break;
 			case "update":
 			case "delete":
 			//not currently implemented let the user know
